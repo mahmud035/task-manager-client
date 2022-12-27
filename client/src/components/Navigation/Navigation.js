@@ -25,12 +25,14 @@ const Navigation = () => {
             <NavLink to="/notcompletedtask">Not Completed Tasks</NavLink>
           </Nav>
 
-          <Nav className="d-flex gap-3 ms-auto pt-4 pt-lg-0 ">
+          <Nav className="d-flex align-items-center gap-3  pt-4 pt-lg-0 ">
             <Link to="/signin">
-              <Button variant="success">SignIn</Button>
+              <Button variant="success" className="btn-sign-in">
+                SignIn
+              </Button>
             </Link>
             <Link to="/register">
-              <Button>Register</Button>
+              <Button className="btn-register">Register</Button>
             </Link>
           </Nav>
         </Navbar.Collapse>
