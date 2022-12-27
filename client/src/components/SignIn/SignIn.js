@@ -33,7 +33,19 @@ const SignIn = () => {
       });
   };
 
-  const handleGoogleSignIn = () => {};
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success('Account Created successfully');
+
+        navigate('/');
+      })
+      .catch((error) => {
+        toast.error(error.message.slice(22, -2));
+      });
+  };
 
   return (
     <div className="login-page-container">
