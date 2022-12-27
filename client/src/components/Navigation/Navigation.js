@@ -53,7 +53,7 @@ const Navigation = () => {
               <>
                 <Link to="/signin">
                   <Button variant="success" className="btn-sign-in">
-                    SignIn
+                    Sign In
                   </Button>
                 </Link>
                 <Link to="/register">
