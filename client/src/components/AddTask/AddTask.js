@@ -41,12 +41,12 @@ const AddTask = () => {
           saveTask(data.task, imageURL);
         }
 
-        if (imageData?.error?.message) {
-          return toast.error(imageData.error.message);
+        if (imageData?.status_code === 400) {
+          return toast.error('Please upload a .jpg /.jpeg /.png type image.');
         }
 
-        if (imageData?.error) {
-          return toast.error('Please upload .jpg /.jpeg /.png type image');
+        if (imageData?.error?.message) {
+          return toast.error(imageData.error.message);
         }
       });
   };
