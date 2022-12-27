@@ -32,7 +32,7 @@ const Navigation = () => {
               <NavLink to="/addtask">Add Task</NavLink>
               <NavLink to="/mytask">My Tasks</NavLink>
               <NavLink to="/completedtask">Completed Tasks</NavLink>
-              <NavLink to="/notcompletedtask">Not Completed Tasks</NavLink>
+              <NavLink to="/notcompletedtask">Incomplete Tasks</NavLink>
             </Nav>
           )}
 
