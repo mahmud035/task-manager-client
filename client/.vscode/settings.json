@@ -4,6 +4,7 @@
     "completedtask",
     "mytask",
     "notcompletedtask",
-    "signin"
+    "signin",
+    "toastify"
   ]
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, ButtonGroup, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { FcGoogle } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 import './SignIn.css';
-import { FcGoogle } from 'react-icons/fc';
 
 const SignIn = () => {
   const {
@@ -12,7 +12,9 @@ const SignIn = () => {
     handleSubmit,
   } = useForm();
 
-  const handleSignIn = (data) => {};
+  const handleSignIn = (data) => {
+    console.log(data);
+  };
 
   const handleGoogleSignIn = () => {};
 
@@ -73,7 +75,7 @@ const SignIn = () => {
             <p></p>
           </div>
 
-          <div className="text-center py-3">
+          <div className="text-center py-2">
             <ButtonGroup vertical>
               <Button
                 onClick={handleGoogleSignIn}
@@ -86,7 +88,7 @@ const SignIn = () => {
             </ButtonGroup>
           </div>
 
-          <p className="text-center py-2">
+          <p className="text-center">
             <small className="text-white-50">
               Don't have an account? &nbsp;
               <Link to="/register" className="text-white fw-semibold">

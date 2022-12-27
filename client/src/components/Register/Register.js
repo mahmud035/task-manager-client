@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import './Register.css';
 
 const Register = () => {
@@ -11,7 +13,26 @@ const Register = () => {
     handleSubmit,
   } = useForm();
 
-  const handleSignUp = (data) => {};
+  const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleRegister = (data) => {
+    // console.log(data);
+
+    //* Create User
+    createUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success('Account Created Successfully');
+
+        navigate('/');
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.message.slice(22, -2));
+      });
+  };
 
   return (
     <div className="sign-up-page-container">
@@ -22,7 +43,7 @@ const Register = () => {
             <p className="text-white-50">Create a new account</p>
           </div>
           <Form
-            onSubmit={handleSubmit(handleSignUp)}
+            onSubmit={handleSubmit(handleRegister)}
             className=" d-flex flex-column  py-3"
           >
             <Form.Group className="mb-3" controlId="formBasicEmail">
