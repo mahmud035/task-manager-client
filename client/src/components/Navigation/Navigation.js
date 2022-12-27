@@ -1,9 +1,10 @@
 import React from 'react';
-import './Navigation.css';
+import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, NavLink } from 'react-router-dom';
+import './Navigation.css';
 
 const Navigation = () => {
   return (
@@ -22,6 +23,15 @@ const Navigation = () => {
             <NavLink to="/mytask">My Tasks</NavLink>
             <NavLink to="/completedtask">Completed Tasks</NavLink>
             <NavLink to="/notcompletedtask">Not Completed Tasks</NavLink>
+          </Nav>
+
+          <Nav className="d-flex gap-3 ms-auto pt-4 pt-lg-0 ">
+            <Link to="/signin">
+              <Button variant="success">SignIn</Button>
+            </Link>
+            <Link to="/register">
+              <Button>Register</Button>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

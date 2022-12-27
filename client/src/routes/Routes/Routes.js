@@ -1,10 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 import AddTask from '../../components/AddTask/AddTask';
-import Main from '../../Layout/Main';
-import Home from '../../components/Home/Home/Home';
-import NotCompletedTasks from '../../components/NotCompletedTasks/NotCompletedTasks';
-import MyTasks from '../../components/MyTasks/MyTasks';
 import CompletedTasks from '../../components/CompletedTasks/CompletedTasks';
+import Home from '../../components/Home/Home/Home';
+import MyTasks from '../../components/MyTasks/MyTasks';
+import NotCompletedTasks from '../../components/NotCompletedTasks/NotCompletedTasks';
+import Register from '../../components/Register/Register';
+import SignIn from '../../components/SignIn/SignIn';
+import Main from '../../Layout/Main';
 
 const router = createBrowserRouter([
   {
@@ -28,8 +30,16 @@ const router = createBrowserRouter([
         element: <CompletedTasks></CompletedTasks>,
       },
       {
-        path: 'notcompletedtask',
+        path: '/notcompletedtask',
         element: <NotCompletedTasks></NotCompletedTasks>,
+      },
+      {
+        path: '/register',
+        element: <Register></Register>,
+      },
+      {
+        path: '/signin',
+        element: <SignIn></SignIn>,
       },
     ],
   },
