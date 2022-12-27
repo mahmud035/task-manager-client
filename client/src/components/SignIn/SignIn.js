@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, ButtonGroup, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import './SignIn.css';
 
 const SignIn = () => {
@@ -12,8 +14,23 @@ const SignIn = () => {
     handleSubmit,
   } = useForm();
 
+  const { user, logIn, googleSignIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleSignIn = (data) => {
     console.log(data);
+
+    //* Sign In
+    logIn(data.email, data.password)
+      .then((result) => {
+        // const user = result.user;
+        // console.log(user);
+        toast.success('Logged in successfully');
+        navigate('/');
+      })
+      .catch((error) => {
+        toast.error(error.message.slice(22, -2));
+      });
   };
 
   const handleGoogleSignIn = () => {};
