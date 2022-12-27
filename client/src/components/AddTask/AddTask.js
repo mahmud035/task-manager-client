@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import './AddTask.css';
 
 const AddTask = () => {
@@ -10,8 +13,68 @@ const AddTask = () => {
     handleSubmit,
   } = useForm();
 
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleAddTask = (data) => {
-    console.log(data);
+    // console.log(data);
+
+    const image = data.image[0];
+    // console.log(image);
+
+    //* Image Upload to Imgbb Server
+    const formData = new FormData();
+    formData.append('image', image);
+
+    const url =
+      'https://api.imgbb.com/1/upload?key=eadbdfb69d7a4e7d6bd0860c71ae874b';
+
+    fetch(url, { method: 'POST', body: formData })
+      .then((res) => res.json())
+      .then((imageData) => {
+        // console.log(imageData);
+        if (imageData?.success) {
+          const imageURL = imageData?.data?.display_url;
+          // console.log(imageURL);
+
+          //* Save task to database
+          saveTask(data.task, imageURL);
+        }
+
+        if (imageData?.error?.message) {
+          return toast.error(imageData.error.message);
+        }
+
+        if (imageData?.error) {
+          return toast.error('Please upload .jpg /.jpeg /.png type image');
+        }
+      });
+  };
+
+  const saveTask = (taskName, imageURL) => {
+    const taskObject = {
+      taskName,
+      image: imageURL,
+      userEmail: user?.email,
+      status: 'incomplete',
+    };
+
+    console.log(taskObject);
+
+    fetch('http://localhost:5000/alltask', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(taskObject),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('SavedTask:', data);
+        toast.success('Task added successfully');
+
+        navigate('/mytask');
+      });
   };
 
   return (
