@@ -4,7 +4,9 @@ import './CompletedTasks.css';
 const CompletedTasks = () => {
   return (
     <div>
-      <h1>Completed Tasks</h1>
+      <div className="container">
+        <h1>Completed Tasks</h1>
+      </div>
     </div>
   );
 };

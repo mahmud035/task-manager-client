@@ -4,7 +4,9 @@ import './NotCompletedTasks.css';
 const NotCompletedTasks = () => {
   return (
     <div>
-      <h1>Not Completed Tasks</h1>
+      <div className="container">
+        <h1>Not Completed Tasks</h1>
+      </div>
     </div>
   );
 };
