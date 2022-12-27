@@ -14,7 +14,7 @@ const SignIn = () => {
     handleSubmit,
   } = useForm();
 
-  const { user, logIn, googleSignIn } = useContext(AuthContext);
+  const { logIn, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSignIn = (data) => {

@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import './Navigation.css';
 
 const Navigation = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut();
+    toast.warn('You just logged out!');
+  };
+
   return (
     <Navbar collapseOnSelect expand="lg" className="py-4 navbar-container">
       <Container>
@@ -18,23 +27,41 @@ const Navigation = () => {
           className="text-dark bg-white"
         />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mx-auto pt-4 pt-lg-0 nav-items">
-            <NavLink to="/addtask">Add Task</NavLink>
-            <NavLink to="/mytask">My Tasks</NavLink>
-            <NavLink to="/completedtask">Completed Tasks</NavLink>
-            <NavLink to="/notcompletedtask">Not Completed Tasks</NavLink>
-          </Nav>
+          {user?.email && (
+            <Nav className="mx-auto pt-4 pt-lg-0 nav-items">
+              <NavLink to="/addtask">Add Task</NavLink>
+              <NavLink to="/mytask">My Tasks</NavLink>
+              <NavLink to="/completedtask">Completed Tasks</NavLink>
+              <NavLink to="/notcompletedtask">Not Completed Tasks</NavLink>
+            </Nav>
+          )}
 
-          <Nav className="d-flex align-items-center gap-3  pt-4 pt-lg-0 ">
-            <Link to="/signin">
-              <Button variant="success" className="btn-sign-in">
-                SignIn
+          {user?.email && (
+            <Link to="/signin" className="ms-auto">
+              <Button
+                onClick={handleLogOut}
+                variant="info"
+                className="btn-log-out fw-semibold text-white"
+              >
+                Log Out
               </Button>
             </Link>
-            <Link to="/register">
-              <Button className="btn-register">Register</Button>
-            </Link>
-          </Nav>
+          )}
+
+          {!user?.email && (
+            <Nav className="d-flex ms-auto align-items-center gap-3  pt-4 pt-lg-0 ">
+              <>
+                <Link to="/signin">
+                  <Button variant="success" className="btn-sign-in">
+                    SignIn
+                  </Button>
+                </Link>
+                <Link to="/register">
+                  <Button className="btn-register">Register</Button>
+                </Link>
+              </>
+            </Nav>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
