@@ -82,6 +82,21 @@ app.get('/incompleteTasks/:email', async (req, res) => {
   }
 });
 
+// get a specific user's all completed task
+app.get('/completedTasks/:email', async (req, res) => {
+  try {
+    const email = req.params.email;
+    const query = {
+      userEmail: email,
+      status: 'complete',
+    };
+    const completedTasks = await allTaskCollection.find(query).toArray();
+    res.send(completedTasks);
+  } catch (error) {
+    console.log(error.message.bold);
+  }
+});
+
 //* -------------------------POST(CREATE)-------------------------
 // post a task to database
 app.post('/alltask', async (req, res) => {
