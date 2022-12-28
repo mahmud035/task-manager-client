@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import Loading from '../Shared/Loading/Loading';
+import TaskCard from '../TaskCard/TaskCard';
 import './MyTasks.css';
 
 const MyTasks = () => {
@@ -37,7 +38,13 @@ const MyTasks = () => {
   return (
     <div>
       <div className="container">
-        <h1>My Tasks Component</h1>
+        <h1>My Tasks Component: {myTasks.length}</h1>
+
+        <div className="task-card-container py-5">
+          {myTasks.map((task, index) => (
+            <TaskCard key={index} task={task}></TaskCard>
+          ))}
+        </div>
       </div>
     </div>
   );
