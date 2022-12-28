@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { GrFormAdd } from 'react-icons/gr';
+import { MdAddTask } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import bg from '../../../assets/images/bg.jpg';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
@@ -45,11 +45,15 @@ const Home = () => {
           </div>
         </div>
       ) : (
-        <div>
+        <div className="task-page-container">
           <div className="container">
-            <div className="d-flex justify-content-end pt-5 pb-4 px-4">
-              <Button onClick={() => setShowForm(!showForm)}>
-                Add New Task <GrFormAdd size={22} />
+            <div className="d-flex justify-content-end pt-5 pb-4 px-4 text-white">
+              <Button
+                onClick={() => setShowForm(!showForm)}
+                className="show-form-btn text-white"
+              >
+                Add Task
+                <MdAddTask size={32} className="plus-icon text-white" />
               </Button>
             </div>
 

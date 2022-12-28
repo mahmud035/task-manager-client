@@ -54,12 +54,12 @@ const Navigation = () => {
             <Nav className="d-flex ms-auto align-items-center gap-3  pt-4 pt-lg-0 ">
               <>
                 <Link to="/signin">
-                  <Button variant="success" className="btn-sign-in">
+                  <Button variant="success" className="btn-sign-in fw-semibold">
                     Sign In
                   </Button>
                 </Link>
                 <Link to="/register">
-                  <Button className="btn-register">Register</Button>
+                  <Button className="btn-register fw-semibold">Register</Button>
                 </Link>
               </>
             </Nav>

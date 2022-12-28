@@ -91,63 +91,52 @@ const HomePageAddTask = ({ showForm, setShowForm }) => {
   };
 
   return (
-    <div>
-      <div className="">
-        <div className="">
-          <div className="">
-            <Form
-              onSubmit={handleSubmit(handleAddTask)}
-              className="homepage-form"
+    <div className="">
+      <Form onSubmit={handleSubmit(handleAddTask)} className="homepage-form">
+        <Row>
+          <Col lg={6}>
+            <Form.Group className="mb-3 mb-lg-0" controlId="formBasicEmail">
+              <Form.Control
+                {...register('task', {
+                  required: 'Task description is required',
+                })}
+                type="text"
+                placeholder="Enter task description..."
+              />
+
+              {errors.task && (
+                <p className="text-danger mb-0">{errors.task?.message}</p>
+              )}
+            </Form.Group>
+          </Col>
+
+          <Col lg={4}>
+            <Form.Group className="mb-3 mb-lg-0" controlId="formBasicEmail">
+              <Form.Control
+                {...register('image', {
+                  required: 'Photo is required',
+                })}
+                type="file"
+                accept="image/*"
+              />
+
+              {errors.image && (
+                <p className="text-danger mb-0">{errors.image?.message}</p>
+              )}
+            </Form.Group>
+          </Col>
+
+          <Col lg={2}>
+            <Button
+              className="w-100 fw-semibold btn-sign-in"
+              variant="primary"
+              type="submit"
             >
-              <Row>
-                <Col lg={6}>
-                  <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Control
-                      {...register('task', {
-                        required: 'Task description is required',
-                      })}
-                      type="text"
-                      placeholder="Enter task description..."
-                    />
-
-                    {errors.task && (
-                      <p className="text-danger mb-0">{errors.task?.message}</p>
-                    )}
-                  </Form.Group>
-                </Col>
-
-                <Col lg={4}>
-                  <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Control
-                      {...register('image', {
-                        required: 'Photo is required',
-                      })}
-                      type="file"
-                      accept="image/*"
-                    />
-
-                    {errors.image && (
-                      <p className="text-danger mb-0">
-                        {errors.image?.message}
-                      </p>
-                    )}
-                  </Form.Group>
-                </Col>
-
-                <Col lg={2}>
-                  <Button
-                    className="w-100 fw-semibold btn-sign-in"
-                    variant="primary"
-                    type="submit"
-                  >
-                    Submit
-                  </Button>
-                </Col>
-              </Row>
-            </Form>
-          </div>
-        </div>
-      </div>
+              Submit
+            </Button>
+          </Col>
+        </Row>
+      </Form>
     </div>
   );
 };
