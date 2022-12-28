@@ -47,7 +47,7 @@ const Home = () => {
       ) : (
         <div className="task-page-container">
           <div className="container">
-            <div className="d-flex justify-content-end pt-5 pb-4 px-4 text-white">
+            <div className="d-flex justify-content-end pt-5 pb-4 text-white">
               <Button
                 onClick={() => setShowForm(!showForm)}
                 className="show-form-btn text-white"

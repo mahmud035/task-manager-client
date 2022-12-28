@@ -3,13 +3,32 @@ import './TaskCard.css';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
-import { FaEdit } from 'react-icons/fa';
+import { FaEdit, FaCheckCircle } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { BiCircle } from 'react-icons/bi';
 
 const TaskCard = ({ task, refetch }) => {
   const { _id, taskName, image, status } = task;
+
+  const handleCompleteTask = (id) => {
+    console.log(id);
+
+    fetch(`http://localhost:5000/updateStatus/${_id}`, {
+      method: 'PATCH',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data?.modifiedCount > 0) {
+          toast.success('Task Status Updated');
+        }
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
 
   const handleDeleteTask = (id) => {
     // console.log(id);
@@ -29,12 +48,17 @@ const TaskCard = ({ task, refetch }) => {
         });
     }
   };
+  // <FaCheckCircle/>
 
   return (
     <div>
       <Card className="border-0 shadow h-100">
         <Card.Body>
-          <Card.Title>{taskName}</Card.Title>
+          <div className="d-flex gap-1">
+            <BiCircle onClick={() => handleCompleteTask(_id)} size={24} />
+
+            <Card.Title>{taskName}</Card.Title>
+          </div>
 
           <Button
             variant={`${status === 'incomplete' ? 'primary' : 'success'}`}
