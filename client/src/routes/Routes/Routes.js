@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import AddTask from '../../components/AddTask/AddTask';
 import CompletedTasks from '../../components/CompletedTasks/CompletedTasks';
+import EditTask from '../../components/EditTask/EditTask';
 import Home from '../../components/Home/Home/Home';
 import MyTasks from '../../components/MyTasks/MyTasks';
 import NotCompletedTasks from '../../components/NotCompletedTasks/NotCompletedTasks';
@@ -40,6 +41,12 @@ const router = createBrowserRouter([
       {
         path: '/signin',
         element: <SignIn></SignIn>,
+      },
+      {
+        path: '/editTask/:id',
+        element: <EditTask></EditTask>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/editReview/${params.id}`),
       },
     ],
   },

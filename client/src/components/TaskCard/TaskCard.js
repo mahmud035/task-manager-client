@@ -5,9 +5,10 @@ import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 import { FaEdit } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const TaskCard = ({ task }) => {
-  const { _id, taskName, image, status, userEmail } = task;
+  const { _id, taskName, image, status } = task;
 
   return (
     <div>
@@ -25,7 +26,9 @@ const TaskCard = ({ task }) => {
 
           <div className="icons-and-image-container">
             <div className="d-flex gap-3">
-              <FaEdit size={25} style={{ cursor: 'pointer' }} />
+              <Link to={`/editTask/${_id}`}>
+                <FaEdit size={25} style={{ cursor: 'pointer' }} />
+              </Link>
               <MdDeleteForever size={25} style={{ cursor: 'pointer' }} />
             </div>
             <div>

@@ -37,15 +37,17 @@ const Navigation = () => {
           )}
 
           {user?.email && (
-            <Link to="/signin" className="ms-auto">
-              <Button
-                onClick={handleLogOut}
-                variant="info"
-                className="btn-log-out fw-semibold text-white"
-              >
-                Log Out
-              </Button>
-            </Link>
+            <Nav>
+              <Link to="/signin" className="mx-auto mt-4 mt-lg-0">
+                <Button
+                  onClick={handleLogOut}
+                  variant="info"
+                  className="btn-log-out fw-semibold text-white"
+                >
+                  Log Out
+                </Button>
+              </Link>
+            </Nav>
           )}
 
           {!user?.email && (
