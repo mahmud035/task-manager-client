@@ -39,6 +39,12 @@ const CompletedTasks = () => {
     <div className="task-page-container">
       <div className="container min-vh-100">
         <div className="task-card-container py-5">
+          {completedTasks.length === 0 && (
+            <div className="d-flex justify-content-center align-items-center text-white pt-5">
+              <h1>Oops! you haven't complete any Task.</h1>
+            </div>
+          )}
+
           {completedTasks.map((task, index) => (
             <TaskCard key={index} task={task} refetch={refetch}></TaskCard>
           ))}
