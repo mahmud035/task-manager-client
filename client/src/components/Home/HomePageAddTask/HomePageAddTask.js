@@ -1,6 +1,9 @@
-import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import './HomePageAddTask.css';
 
 const HomePageAddTask = ({ showForm, setShowForm }) => {
@@ -10,9 +13,81 @@ const HomePageAddTask = ({ showForm, setShowForm }) => {
     handleSubmit,
   } = useForm();
 
+  // IMP: Re-Use TanStack Query for Fetching User's All Task
+  const { user } = useContext(AuthContext);
+
+  const url = `http://localhost:5000/mytasks?email=${user?.email}`;
+
+  const { refetch } = useQuery({
+    queryKey: ['mytasks', user?.email],
+    queryFn: async () => {
+      const res = await fetch(url);
+      const data = await res.json();
+      return data;
+    },
+  });
+
   const handleAddTask = (data) => {
     console.log(data);
-    setShowForm(!showForm);
+
+    const image = data.image[0];
+    // console.log(image);
+
+    //* Image Upload to Imgbb Server
+    const formData = new FormData();
+    formData.append('image', image);
+
+    const url =
+      'https://api.imgbb.com/1/upload?key=eadbdfb69d7a4e7d6bd0860c71ae874b';
+
+    fetch(url, { method: 'POST', body: formData })
+      .then((res) => res.json())
+      .then((imageData) => {
+        // console.log(imageData);
+        if (imageData?.success) {
+          const imageURL = imageData?.data?.display_url;
+          // console.log(imageURL);
+
+          //* Save task to Database
+          saveTask(data.task, imageURL);
+        }
+
+        if (imageData?.status_code === 400) {
+          return toast.error('Please upload a .jpg /.jpeg /.png type image.');
+        }
+
+        if (imageData?.error?.message) {
+          return toast.error(imageData.error.message);
+        }
+      });
+  };
+
+  const saveTask = (taskName, imageURL) => {
+    const taskObject = {
+      taskName,
+      image: imageURL,
+      userEmail: user?.email,
+      status: 'incomplete',
+    };
+
+    fetch('http://localhost:5000/alltask', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(taskObject),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('SavedTask:', data);
+        toast.success('Task added successfully');
+
+        // close form
+        setShowForm(!showForm);
+
+        // Re-fetching all task after adding new task
+        refetch();
+      });
   };
 
   return (

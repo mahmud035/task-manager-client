@@ -12,7 +12,7 @@ const TaskCard = ({ task, refetch }) => {
   const { _id, taskName, image, status } = task;
 
   const handleDeleteTask = (id) => {
-    console.log(id);
+    // console.log(id);
 
     const agree = window.confirm('Are you sure you want to delete the task?');
 
