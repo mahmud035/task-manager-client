@@ -113,6 +113,23 @@ app.patch('/updateReview/:id', async (req, res) => {
   }
 });
 
+// update specific task status
+app.patch('/updateStatus/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const filter = { _id: ObjectId(id) };
+    const updatedTaskObject = {
+      $set: {
+        status: 'complete',
+      },
+    };
+    const result = await allTaskCollection.updateOne(filter, updatedTaskObject);
+    res.send(result);
+  } catch (error) {
+    console.log(error.message.bold);
+  }
+});
+
 //* -------------------------DELETE(DELETE)-------------------------
 app.delete('/deleteTask/:id', async (req, res) => {
   try {
