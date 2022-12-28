@@ -33,13 +33,11 @@ const MyTasks = () => {
     return <h1>{error.message}</h1>;
   }
 
-  return (
-    <div>
-      <div className="container">
-        <h1 className="text-center pt-3">
-          My Tasks Component: {myTasks.length}
-        </h1>
+  console.log(myTasks);
 
+  return (
+    <div className="task-page-container">
+      <div className="container min-vh-100">
         <div className="task-card-container py-5">
           {myTasks.map((task, index) => (
             <TaskCard key={index} task={task} refetch={refetch}></TaskCard>

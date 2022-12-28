@@ -32,7 +32,7 @@ const TaskCard = ({ task, refetch }) => {
 
   return (
     <div>
-      <Card className="border-0 shadow">
+      <Card className="border-0 shadow h-100">
         <Card.Body>
           <Card.Title>{taskName}</Card.Title>
 
