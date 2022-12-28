@@ -67,6 +67,21 @@ app.get('/editReview/:id', async (req, res) => {
   }
 });
 
+// get a specific user's all incomplete task
+app.get('/incompleteTasks/:email', async (req, res) => {
+  try {
+    const email = req.params.email;
+    const query = {
+      userEmail: email,
+      status: 'incomplete',
+    };
+    const incompleteTasks = await allTaskCollection.find(query).toArray();
+    res.send(incompleteTasks);
+  } catch (error) {
+    console.log(error.message.bold);
+  }
+});
+
 //* -------------------------POST(CREATE)-------------------------
 // post a task to database
 app.post('/alltask', async (req, res) => {
