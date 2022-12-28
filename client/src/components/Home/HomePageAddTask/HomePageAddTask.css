@@ -1,0 +1,11 @@
+.homepage-form {
+  background-color: rgb(98, 209, 154);
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.homepage-form input {
+  padding: 8px 10px;
+  border: 0;
+  outline: 0;
+}

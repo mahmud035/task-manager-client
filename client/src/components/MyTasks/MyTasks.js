@@ -33,7 +33,7 @@ const MyTasks = () => {
     return <h1>{error.message}</h1>;
   }
 
-  console.log(myTasks);
+  // console.log(myTasks);
 
   return (
     <div className="task-page-container">
