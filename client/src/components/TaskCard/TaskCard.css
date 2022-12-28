@@ -3,6 +3,14 @@
   font-weight: 500;
 }
 
+.in-progress {
+  background-color: #0ea5e9;
+}
+
+.complete {
+  background-color: #10b981;
+}
+
 .icons-and-image-container {
   display: flex;
   justify-content: space-between;

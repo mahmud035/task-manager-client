@@ -23,6 +23,8 @@ const TaskCard = ({ task, refetch }) => {
         console.log(data);
         if (data?.modifiedCount > 0) {
           toast.success('Task Status Updated');
+          // Re-fetch all task
+          refetch();
         }
       })
       .catch((error) => {
@@ -45,6 +47,9 @@ const TaskCard = ({ task, refetch }) => {
             toast.success('Task Delete Successfully');
             refetch();
           }
+        })
+        .catch((error) => {
+          toast.error(error.message);
         });
     }
   };
@@ -55,15 +60,28 @@ const TaskCard = ({ task, refetch }) => {
       <Card className="border-0 shadow h-100">
         <Card.Body>
           <div className="d-flex gap-1">
-            <BiCircle onClick={() => handleCompleteTask(_id)} size={24} />
+            {status === 'incomplete' ? (
+              <>
+                <BiCircle
+                  onClick={() => handleCompleteTask(_id)}
+                  size={24}
+                  style={{ cursor: 'pointer' }}
+                />
+              </>
+            ) : (
+              <>
+                <FaCheckCircle size={24} style={{ color: '#10b981' }} />
+              </>
+            )}
 
             <Card.Title>{taskName}</Card.Title>
           </div>
 
           <Button
-            variant={`${status === 'incomplete' ? 'primary' : 'success'}`}
             size="sm"
-            className={`rounded-pill border-0 mt-2 task-status`}
+            className={`rounded-pill border-0 mt-2 task-status ${
+              status === 'incomplete' ? 'in-progress' : 'complete'
+            }`}
           >
             {status === 'incomplete' ? 'In Progress' : 'Complete'}
           </Button>
@@ -71,12 +89,15 @@ const TaskCard = ({ task, refetch }) => {
           <div className="icons-and-image-container">
             <div className="d-flex gap-3">
               <Link to={`/editTask/${_id}`}>
-                <FaEdit size={25} style={{ cursor: 'pointer' }} />
+                <FaEdit
+                  size={25}
+                  style={{ cursor: 'pointer', color: '#439a97' }}
+                />
               </Link>
               <MdDeleteForever
                 onClick={() => handleDeleteTask(_id)}
-                size={25}
-                style={{ cursor: 'pointer' }}
+                size={28}
+                style={{ cursor: 'pointer', color: '#ec4899' }}
               />
             </div>
             <div>
