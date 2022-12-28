@@ -33,7 +33,7 @@ const NotCompletedTasks = () => {
     return <h1>{error.message}</h1>;
   }
 
-  console.log(incompleteTasks);
+  // console.log(incompleteTasks);
 
   return (
     <div className="task-page-container">
