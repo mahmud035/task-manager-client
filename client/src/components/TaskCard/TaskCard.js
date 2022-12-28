@@ -6,9 +6,29 @@ import Image from 'react-bootstrap/Image';
 import { FaEdit } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-const TaskCard = ({ task }) => {
+const TaskCard = ({ task, refetch }) => {
   const { _id, taskName, image, status } = task;
+
+  const handleDeleteTask = (id) => {
+    console.log(id);
+
+    const agree = window.confirm('Are you sure you want to delete the task?');
+
+    if (agree) {
+      fetch(`http://localhost:5000/deleteTask/${id}`, {
+        method: 'DELETE',
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount) {
+            toast.success('Task Delete Successfully');
+            refetch();
+          }
+        });
+    }
+  };
 
   return (
     <div>
@@ -29,7 +49,11 @@ const TaskCard = ({ task }) => {
               <Link to={`/editTask/${_id}`}>
                 <FaEdit size={25} style={{ cursor: 'pointer' }} />
               </Link>
-              <MdDeleteForever size={25} style={{ cursor: 'pointer' }} />
+              <MdDeleteForever
+                onClick={() => handleDeleteTask(_id)}
+                size={25}
+                style={{ cursor: 'pointer' }}
+              />
             </div>
             <div>
               <Image src={image} className="user-image"></Image>

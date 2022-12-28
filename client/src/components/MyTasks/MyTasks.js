@@ -42,7 +42,7 @@ const MyTasks = () => {
 
         <div className="task-card-container py-5">
           {myTasks.map((task, index) => (
-            <TaskCard key={index} task={task}></TaskCard>
+            <TaskCard key={index} task={task} refetch={refetch}></TaskCard>
           ))}
         </div>
       </div>

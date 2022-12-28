@@ -13,7 +13,7 @@ const EditTask = () => {
   } = useForm();
 
   const task = useLoaderData();
-  const { _id, taskName, image, status, userEmail } = task;
+  const { _id, taskName } = task;
   const navigate = useNavigate();
 
   const handleUpdateTask = (data) => {
@@ -21,7 +21,7 @@ const EditTask = () => {
       taskName: data.task,
     };
 
-    console.log(updateTask);
+    // console.log(updateTask);
 
     fetch(`http://localhost:5000/updateReview/${_id}`, {
       method: 'PATCH',
