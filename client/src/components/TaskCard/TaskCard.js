@@ -15,7 +15,7 @@ const TaskCard = ({ task, refetch }) => {
   const handleCompleteTask = (id) => {
     console.log(id);
 
-    fetch(`http://localhost:5000/updateStatus/${_id}`, {
+    fetch(`https://task-manager-server-sigma.vercel.app/updateStatus/${_id}`, {
       method: 'PATCH',
     })
       .then((res) => res.json())
@@ -38,7 +38,7 @@ const TaskCard = ({ task, refetch }) => {
     const agree = window.confirm('Are you sure you want to delete the task?');
 
     if (agree) {
-      fetch(`http://localhost:5000/deleteTask/${id}`, {
+      fetch(`https://task-manager-server-sigma.vercel.app/deleteTask/${id}`, {
         method: 'DELETE',
       })
         .then((res) => res.json())

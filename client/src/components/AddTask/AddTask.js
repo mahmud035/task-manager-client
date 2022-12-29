@@ -61,7 +61,7 @@ const AddTask = () => {
 
     console.log(taskObject);
 
-    fetch('http://localhost:5000/alltask', {
+    fetch('https://task-manager-server-sigma.vercel.app/alltask', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

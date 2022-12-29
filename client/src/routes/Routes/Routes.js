@@ -46,7 +46,9 @@ const router = createBrowserRouter([
         path: '/editTask/:id',
         element: <EditTask></EditTask>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/editReview/${params.id}`),
+          fetch(
+            `https://task-manager-server-sigma.vercel.app/editReview/${params.id}`
+          ),
       },
     ],
   },

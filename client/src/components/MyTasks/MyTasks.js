@@ -8,7 +8,7 @@ import './MyTasks.css';
 const MyTasks = () => {
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/mytasks?email=${user?.email}`;
+  const url = `https://task-manager-server-sigma.vercel.app/mytasks?email=${user?.email}`;
 
   const {
     isLoading,

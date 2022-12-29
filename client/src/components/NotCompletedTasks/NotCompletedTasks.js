@@ -8,7 +8,7 @@ import './NotCompletedTasks.css';
 const NotCompletedTasks = () => {
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/incompleteTasks/${user?.email}`;
+  const url = `https://task-manager-server-sigma.vercel.app/incompleteTasks/${user?.email}`;
 
   const {
     isLoading,
