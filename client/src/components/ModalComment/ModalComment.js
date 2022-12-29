@@ -81,6 +81,7 @@ const ModalComment = ({ show, handleClose, commentId }) => {
                   required: 'Comment description is required',
                 })}
                 as="textarea"
+                defaultValue={commentedTask?.comment}
                 placeholder="Enter description..."
               />
 
@@ -98,11 +99,6 @@ const ModalComment = ({ show, handleClose, commentId }) => {
             </Button>
           </Form>
         </Modal.Body>
-        {/* <Modal.Footer>
-          <Button variant="primary" type="submit" onClick={handleClose}>
-            Save Notes
-          </Button>
-        </Modal.Footer> */}
       </Modal>
     </div>
   );
