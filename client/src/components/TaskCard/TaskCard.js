@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 import { FaEdit, FaCheckCircle } from 'react-icons/fa';
-import { MdDeleteForever } from 'react-icons/md';
+import { MdDeleteForever, MdAddComment } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { BiCircle } from 'react-icons/bi';
@@ -91,13 +91,20 @@ const TaskCard = ({ task, refetch }) => {
           </Button>
 
           <div className="icons-and-image-container">
-            <div className="d-flex gap-3">
+            <div className="d-flex align-items-center gap-3">
               <Link to={`/editTask/${_id}`}>
                 <FaEdit
-                  size={25}
+                  size={26}
                   style={{ cursor: 'pointer', color: '#439a97' }}
                 />
               </Link>
+
+              <MdAddComment
+                className="comment-icon"
+                size={28}
+                style={{ cursor: 'pointer', color: '#10b981' }}
+              />
+
               <MdDeleteForever
                 onClick={() => handleDeleteTask(_id)}
                 size={28}

@@ -24,3 +24,7 @@
   height: 25px;
   border-radius: 50%;
 }
+
+.comment-icon {
+  margin-bottom: -2px;
+}
