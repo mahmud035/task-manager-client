@@ -13,7 +13,7 @@ const ModalComment = ({ show, handleClose, commentId }) => {
     handleSubmit,
   } = useForm();
 
-  const url = `http://localhost:5000/commentTask/${commentId}`;
+  const url = `https://task-manager-server-sigma.vercel.app/commentTask/${commentId}`;
 
   const {
     isLoading,
@@ -38,7 +38,7 @@ const ModalComment = ({ show, handleClose, commentId }) => {
     return <h1>{error.message}</h1>;
   }
 
-  console.log(commentedTask);
+  // console.log(commentedTask);
 
   const handleModalComment = (data) => {
     // Close Modal
@@ -47,14 +47,17 @@ const ModalComment = ({ show, handleClose, commentId }) => {
 
     const comment = { comment: data.comment };
 
-    fetch(`http://localhost:5000/addComment/${commentId}`, {
-      method: 'PUT',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(comment),
-    })
+    fetch(
+      `https://task-manager-server-sigma.vercel.app/addComment/${commentId}`,
+      {
+        method: 'PUT',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(comment),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         toast.success('Comment Added Successfully');
         refetch();
       })
