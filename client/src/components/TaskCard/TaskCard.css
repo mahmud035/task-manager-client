@@ -9,6 +9,11 @@
 
 .complete {
   background-color: #10b981;
+  transition: all 0.3s ease-in-out;
+}
+
+.complete:hover {
+  background-color: #059669;
 }
 
 .icons-and-image-container {

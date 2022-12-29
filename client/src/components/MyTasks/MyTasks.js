@@ -1,11 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import ModalComment from '../ModalComment/ModalComment';
 import Loading from '../Shared/Loading/Loading';
 import TaskCard from '../TaskCard/TaskCard';
 import './MyTasks.css';
 
 const MyTasks = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const { user } = useContext(AuthContext);
 
   const url = `https://task-manager-server-sigma.vercel.app/mytasks?email=${user?.email}`;
@@ -50,9 +56,18 @@ const MyTasks = () => {
           )}
 
           {myTasks.map((task, index) => (
-            <TaskCard key={index} task={task} refetch={refetch}></TaskCard>
+            <TaskCard
+              key={index}
+              task={task}
+              refetch={refetch}
+              handleShow={handleShow}
+            ></TaskCard>
           ))}
         </div>
+
+        {show && (
+          <ModalComment show={show} handleClose={handleClose}></ModalComment>
+        )}
       </div>
     </div>
   );

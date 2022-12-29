@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { BiCircle } from 'react-icons/bi';
 
-const TaskCard = ({ task, refetch }) => {
+const TaskCard = ({ task, refetch, handleShow }) => {
   const { _id, taskName, image, status } = task;
 
   const handleCompleteTask = (id) => {
@@ -30,6 +30,13 @@ const TaskCard = ({ task, refetch }) => {
       .catch((error) => {
         toast.error(error.message);
       });
+  };
+
+  const handleComment = (id) => {
+    // Open Modal
+    handleShow();
+
+    console.log(id);
   };
 
   const handleDeleteTask = (id) => {
@@ -99,11 +106,14 @@ const TaskCard = ({ task, refetch }) => {
                 />
               </Link>
 
-              <MdAddComment
-                className="comment-icon"
-                size={28}
-                style={{ cursor: 'pointer', color: '#10b981' }}
-              />
+              {status === 'complete' && (
+                <MdAddComment
+                  onClick={() => handleComment(_id)}
+                  className="comment-icon"
+                  size={28}
+                  style={{ cursor: 'pointer', color: '#10b981' }}
+                />
+              )}
 
               <MdDeleteForever
                 onClick={() => handleDeleteTask(_id)}
