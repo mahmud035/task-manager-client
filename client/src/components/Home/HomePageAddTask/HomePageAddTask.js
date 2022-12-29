@@ -79,7 +79,7 @@ const HomePageAddTask = ({ showForm, setShowForm }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log('SavedTask:', data);
+        // console.log('SavedTask:', data);
         toast.success('Task added successfully');
 
         // close form
@@ -90,26 +90,20 @@ const HomePageAddTask = ({ showForm, setShowForm }) => {
       });
   };
 
-  // useEffect(() => {
-  //   const keyDownHandler = (e, data) => {
-  //     console.log('User Pressed:', e.key);
+  // Submit form by pressing Enter Key
+  const checkKeyDown = (e) => {
+    console.log('User Pressed:', e.key);
 
-  //     if (e.key === 'Enter') {
-  //       handleAddTask(data);
-  //     }
-  //   };
-
-  //   document.addEventListener('keydown', keyDownHandler);
-
-  //   return () => {
-  //     document.removeEventListener('keydown', keyDownHandler);
-  //   };
-  // }, []);
+    if (e.key === 'Enter') {
+      handleAddTask(e);
+    }
+  };
 
   return (
     <div className="">
       <Form
         onSubmit={handleSubmit(handleAddTask)}
+        onKeyDown={(e) => checkKeyDown(e)}
         className="homepage-form"
         data-aos="fade-down"
         data-aos-duration="1000"
