@@ -45,50 +45,44 @@ const EditTask = () => {
   };
 
   return (
-    <div>
-      <div className="">
-        <div className="task-page-container">
-          <div className="container form-page">
-            <div
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              className="pt-5 form-container"
-            >
-              <div className="text-center ">
-                <h2>Update Your Task</h2>
-              </div>
-              <Form
-                onSubmit={handleSubmit(handleUpdateTask)}
-                className=" d-flex flex-column p-4 "
-              >
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label className="fw-semibold">
-                    Task Description
-                  </Form.Label>
-                  <Form.Control
-                    {...register('task', {
-                      required: 'Task description is required',
-                    })}
-                    as="textarea"
-                    defaultValue={taskName}
-                    placeholder="Enter task description..."
-                  />
-
-                  {errors.task && (
-                    <p className="text-danger mb-0">{errors.task?.message}</p>
-                  )}
-                </Form.Group>
-
-                <Button
-                  className="d-block w-100 fw-semibold btn-sign-in"
-                  variant="primary"
-                  type="submit"
-                >
-                  Save Changes
-                </Button>
-              </Form>
-            </div>
+    <div className="task-page-container">
+      <div className="container form-page">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          className="pt-5 form-container"
+        >
+          <div className="text-center ">
+            <h2>Update Your Task</h2>
           </div>
+          <Form
+            onSubmit={handleSubmit(handleUpdateTask)}
+            className=" d-flex flex-column p-4 "
+          >
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label className="fw-semibold">Task Description</Form.Label>
+              <Form.Control
+                {...register('task', {
+                  required: 'Task description is required',
+                })}
+                as="textarea"
+                defaultValue={taskName}
+                placeholder="Enter task description..."
+              />
+
+              {errors.task && (
+                <p className="text-danger mb-0">{errors.task?.message}</p>
+              )}
+            </Form.Group>
+
+            <Button
+              className="d-block w-100 fw-semibold btn-sign-in"
+              variant="primary"
+              type="submit"
+            >
+              Save Changes
+            </Button>
+          </Form>
         </div>
       </div>
     </div>

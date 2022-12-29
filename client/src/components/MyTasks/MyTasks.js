@@ -8,6 +8,7 @@ import './MyTasks.css';
 
 const MyTasks = () => {
   const [show, setShow] = useState(false);
+  const [commentId, setCommentId] = useState('');
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -41,6 +42,12 @@ const MyTasks = () => {
 
   // console.log(myTasks);
 
+  const handleComment = (id) => {
+    // Open Modal
+    handleShow();
+    setCommentId(id);
+  };
+
   return (
     <div className="task-page-container">
       <div className="container min-vh-100">
@@ -61,12 +68,17 @@ const MyTasks = () => {
               task={task}
               refetch={refetch}
               handleShow={handleShow}
+              handleComment={handleComment}
             ></TaskCard>
           ))}
         </div>
 
         {show && (
-          <ModalComment show={show} handleClose={handleClose}></ModalComment>
+          <ModalComment
+            show={show}
+            handleClose={handleClose}
+            commentId={commentId}
+          ></ModalComment>
         )}
       </div>
     </div>

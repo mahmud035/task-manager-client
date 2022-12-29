@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { BiCircle } from 'react-icons/bi';
 
-const TaskCard = ({ task, refetch, handleShow }) => {
+const TaskCard = ({ task, refetch, handleShow, handleComment }) => {
   const { _id, taskName, image, status } = task;
 
   const handleCompleteTask = (id) => {
@@ -30,13 +30,6 @@ const TaskCard = ({ task, refetch, handleShow }) => {
       .catch((error) => {
         toast.error(error.message);
       });
-  };
-
-  const handleComment = (id) => {
-    // Open Modal
-    handleShow();
-
-    console.log(id);
   };
 
   const handleDeleteTask = (id) => {
