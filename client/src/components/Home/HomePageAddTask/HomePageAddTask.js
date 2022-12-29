@@ -90,6 +90,7 @@ const HomePageAddTask = ({ showForm, setShowForm }) => {
       });
   };
 
+  // FIXME This function will work only when the input field is focused. It will be a UX issue.
   // Submit form by pressing Enter Key
   const checkKeyDown = (e) => {
     console.log('User Pressed:', e.key);
