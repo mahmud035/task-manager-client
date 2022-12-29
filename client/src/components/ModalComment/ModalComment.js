@@ -1,7 +1,9 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import Loading from '../Shared/Loading/Loading';
 import './ModalComment.css';
 
 const ModalComment = ({ show, handleClose, commentId }) => {
@@ -10,6 +12,33 @@ const ModalComment = ({ show, handleClose, commentId }) => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+  const url = `http://localhost:5000/commentTask/${commentId}`;
+
+  const {
+    isLoading,
+    isError,
+    data: commentedTask = {},
+    error,
+    refetch,
+  } = useQuery({
+    queryKey: ['commentTask', commentId],
+    queryFn: async () => {
+      const res = await fetch(url);
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+
+  if (isError) {
+    return <h1>{error.message}</h1>;
+  }
+
+  console.log(commentedTask);
 
   const handleModalComment = (data) => {
     // Close Modal
@@ -26,6 +55,8 @@ const ModalComment = ({ show, handleClose, commentId }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        toast.success('Comment Added Successfully');
+        refetch();
       })
       .catch((error) => {
         toast.error(error.message);
@@ -34,10 +65,9 @@ const ModalComment = ({ show, handleClose, commentId }) => {
 
   return (
     <div>
-      <h1>Modal Component</h1>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Add your thoughts about this task.</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form
@@ -45,13 +75,13 @@ const ModalComment = ({ show, handleClose, commentId }) => {
             className=" d-flex flex-column p-4 "
           >
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label className="fw-semibold">Task Description</Form.Label>
+              <Form.Label className="fw-semibold">Description</Form.Label>
               <Form.Control
                 {...register('comment', {
                   required: 'Comment description is required',
                 })}
                 as="textarea"
-                placeholder="Enter task description..."
+                placeholder="Enter description..."
               />
 
               {errors.comment && (
