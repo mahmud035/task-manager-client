@@ -67,6 +67,18 @@ app.get('/editReview/:id', async (req, res) => {
   }
 });
 
+// get a specific task for comment or commented task using id
+app.get('/commentTask/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const query = { _id: ObjectId(id) };
+    const commentTask = await allTaskCollection.findOne(query);
+    res.send(commentTask);
+  } catch (error) {
+    console.log(error.message.bold);
+  }
+});
+
 // get a specific user's all incomplete task
 app.get('/incompleteTasks/:email', async (req, res) => {
   try {
