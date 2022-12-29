@@ -110,6 +110,29 @@ app.post('/alltask', async (req, res) => {
 });
 
 //* -------------------------PUT/PATCH(UPDATE)-------------------------
+// add comment to a specific task
+app.put('/addComment/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const filter = { _id: ObjectId(id) };
+    const comment = req.body;
+    const options = { upsert: true };
+    const updatedTaskObject = {
+      $set: {
+        comment: comment.comment,
+      },
+    };
+    const result = await allTaskCollection.updateOne(
+      filter,
+      updatedTaskObject,
+      options
+    );
+    res.send(result);
+  } catch (error) {
+    console.log(error.message.bold);
+  }
+});
+
 // update specific task
 app.patch('/updateReview/:id', async (req, res) => {
   try {
