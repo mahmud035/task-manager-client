@@ -98,7 +98,7 @@ const ModalComment = ({ show, handleClose, commentId }) => {
               variant="primary"
               type="submit"
             >
-              Save Changes
+              Save
             </Button>
           </Form>
         </Modal.Body>

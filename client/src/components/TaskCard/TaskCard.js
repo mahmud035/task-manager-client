@@ -60,7 +60,7 @@ const TaskCard = ({ task, refetch, handleShow, handleComment }) => {
       <Card
         data-aos="fade-up"
         data-aos-duration="1000"
-        className="border-0 shadow h-100"
+        className="border-0 shadow h-100 task-card"
       >
         <Card.Body>
           <div className="d-flex gap-1">
