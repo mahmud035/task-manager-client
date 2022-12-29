@@ -57,7 +57,11 @@ const TaskCard = ({ task, refetch }) => {
 
   return (
     <div>
-      <Card className="border-0 shadow h-100">
+      <Card
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        className="border-0 shadow h-100"
+      >
         <Card.Body>
           <div className="d-flex gap-1">
             {status === 'incomplete' ? (

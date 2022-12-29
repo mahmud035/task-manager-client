@@ -27,7 +27,11 @@ const Home = () => {
       {!user?.email ? (
         <div style={bgImage}>
           <div className="container">
-            <div className="d-flex flex-column justify-content-center align-items-center gap-3 vh-100 text-center">
+            <div
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              className="d-flex flex-column justify-content-center align-items-center gap-3 vh-100 text-center"
+            >
               <h1 className="text-white">
                 Please Sign In or Register for Managing Your Task.
               </h1>

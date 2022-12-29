@@ -40,7 +40,11 @@ const NotCompletedTasks = () => {
       <div className="container min-vh-100">
         <div className="task-card-container py-5">
           {incompleteTasks.length === 0 && (
-            <div className="d-flex justify-content-center align-items-center text-white pt-5">
+            <div
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              className="d-flex justify-content-center align-items-center text-white pt-5"
+            >
               <h1>Oops! no task found.</h1>
             </div>
           )}

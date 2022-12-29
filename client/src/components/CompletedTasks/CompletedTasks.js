@@ -40,7 +40,11 @@ const CompletedTasks = () => {
       <div className="container min-vh-100">
         <div className="task-card-container py-5">
           {completedTasks.length === 0 && (
-            <div className="d-flex justify-content-center align-items-center text-white pt-5">
+            <div
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              className="d-flex justify-content-center align-items-center text-white pt-5"
+            >
               <h1>Oops! you haven't complete any Task.</h1>
             </div>
           )}

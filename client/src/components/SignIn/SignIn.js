@@ -50,7 +50,11 @@ const SignIn = () => {
   return (
     <div className="login-page-container">
       <div className="container form-page">
-        <div className="pt-5 form-container">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          className="pt-5 form-container"
+        >
           <div className="text-center ">
             <h2>Sign In</h2>
             <p className=" text-white-50">Sign in to access your account</p>
@@ -121,7 +125,7 @@ const SignIn = () => {
             <small className="text-white-50">
               Don't have an account? &nbsp;
               <Link to="/register" className="text-white fw-semibold">
-                Create an account
+                Register
               </Link>
             </small>
           </p>

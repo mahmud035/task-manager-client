@@ -90,9 +90,30 @@ const HomePageAddTask = ({ showForm, setShowForm }) => {
       });
   };
 
+  // useEffect(() => {
+  //   const keyDownHandler = (e, data) => {
+  //     console.log('User Pressed:', e.key);
+
+  //     if (e.key === 'Enter') {
+  //       handleAddTask(data);
+  //     }
+  //   };
+
+  //   document.addEventListener('keydown', keyDownHandler);
+
+  //   return () => {
+  //     document.removeEventListener('keydown', keyDownHandler);
+  //   };
+  // }, []);
+
   return (
     <div className="">
-      <Form onSubmit={handleSubmit(handleAddTask)} className="homepage-form">
+      <Form
+        onSubmit={handleSubmit(handleAddTask)}
+        className="homepage-form"
+        data-aos="fade-down"
+        data-aos-duration="1000"
+      >
         <Row>
           <Col lg={6}>
             <Form.Group className="mb-3 mb-lg-0" controlId="formBasicEmail">

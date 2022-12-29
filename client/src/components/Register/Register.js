@@ -37,7 +37,11 @@ const Register = () => {
   return (
     <div className="sign-up-page-container">
       <div className="container form-page pt-5 pb-5">
-        <div className="pt-5 px-4 form-container">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          className="pt-5 px-4 form-container"
+        >
           <div className="text-center">
             <h2>Please Register</h2>
             <p className="text-white-50">Create a new account</p>
@@ -100,7 +104,7 @@ const Register = () => {
             <small className="text-white-50">
               Already have an account? &nbsp;
               <Link to="/signin" className="text-white fw-semibold ">
-                SignIn
+                Sign In
               </Link>
             </small>
           </p>
