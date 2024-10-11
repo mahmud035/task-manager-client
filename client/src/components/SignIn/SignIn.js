@@ -18,13 +18,9 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const handleSignIn = (data) => {
-    console.log(data);
-
     //* Sign In
     logIn(data.email, data.password)
       .then((result) => {
-        // const user = result.user;
-        // console.log(user);
         toast.success('Logged in successfully');
         navigate('/');
       })
@@ -36,10 +32,7 @@ const SignIn = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
-        const user = result.user;
-        console.log(user);
         toast.success('Account Created successfully');
-
         navigate('/');
       })
       .catch((error) => {

@@ -1,4 +1,10 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import app from '../../firebase config/firebase.config';
 
 import {
@@ -18,7 +24,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const googleProvider = new GoogleAuthProvider();
+  const googleProvider = useMemo(() => new GoogleAuthProvider(), []);
 
   //* Create User With Email & Password
   const createUser = (email, password) => {
@@ -33,9 +39,9 @@ const AuthProvider = ({ children }) => {
   };
 
   //* Google Sign In
-  const googleSignIn = () => {
+  const googleSignIn = useCallback(() => {
     return signInWithPopup(auth, googleProvider);
-  };
+  }, [googleProvider]);
 
   //* LogOut / Sign Out
   const logOut = () => {
@@ -53,7 +59,17 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  const authInfo = { user, loading, createUser, logIn, googleSignIn, logOut };
+  const authInfo = useMemo(
+    () => ({
+      user,
+      loading,
+      createUser,
+      logIn,
+      googleSignIn,
+      logOut,
+    }),
+    [user, loading, googleSignIn]
+  );
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

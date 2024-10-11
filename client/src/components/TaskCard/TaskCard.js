@@ -1,26 +1,23 @@
 import React from 'react';
-import './TaskCard.css';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
-import { FaEdit, FaCheckCircle } from 'react-icons/fa';
-import { MdDeleteForever, MdAddComment } from 'react-icons/md';
+import { BiCircle } from 'react-icons/bi';
+import { FaCheckCircle, FaEdit } from 'react-icons/fa';
+import { MdAddComment, MdDeleteForever } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { BiCircle } from 'react-icons/bi';
+import './TaskCard.css';
 
-const TaskCard = ({ task, refetch, handleShow, handleComment }) => {
+const TaskCard = ({ task, refetch, handleComment }) => {
   const { _id, taskName, image, status } = task;
 
   const handleCompleteTask = (id) => {
-    console.log(id);
-
-    fetch(`https://task-manager-server-sigma.vercel.app/updateStatus/${_id}`, {
+    fetch(`https://task-manager-server-sigma.vercel.app/updateStatus/${id}`, {
       method: 'PATCH',
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data?.modifiedCount > 0) {
           toast.success('Task Status Updated');
           // Re-fetch all task
@@ -33,8 +30,6 @@ const TaskCard = ({ task, refetch, handleShow, handleComment }) => {
   };
 
   const handleDeleteTask = (id) => {
-    // console.log(id);
-
     const agree = window.confirm('Are you sure you want to delete the task?');
 
     if (agree) {
@@ -53,7 +48,6 @@ const TaskCard = ({ task, refetch, handleShow, handleComment }) => {
         });
     }
   };
-  // <FaCheckCircle/>
 
   return (
     <div>
@@ -65,17 +59,13 @@ const TaskCard = ({ task, refetch, handleShow, handleComment }) => {
         <Card.Body>
           <div className="d-flex gap-1">
             {status === 'incomplete' ? (
-              <>
-                <BiCircle
-                  onClick={() => handleCompleteTask(_id)}
-                  size={24}
-                  style={{ cursor: 'pointer' }}
-                />
-              </>
+              <BiCircle
+                onClick={() => handleCompleteTask(_id)}
+                size={24}
+                style={{ cursor: 'pointer' }}
+              />
             ) : (
-              <>
-                <FaCheckCircle size={24} style={{ color: '#10b981' }} />
-              </>
+              <FaCheckCircle size={24} style={{ color: '#10b981' }} />
             )}
 
             <Card.Title>{taskName}</Card.Title>

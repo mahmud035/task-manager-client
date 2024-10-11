@@ -28,10 +28,7 @@ const HomePageAddTask = ({ showForm, setShowForm }) => {
   });
 
   const handleAddTask = (data) => {
-    console.log(data);
-
     const image = data.image[0];
-    // console.log(image);
 
     //* Image Upload to Imgbb Server
     const formData = new FormData();
@@ -43,10 +40,8 @@ const HomePageAddTask = ({ showForm, setShowForm }) => {
     fetch(url, { method: 'POST', body: formData })
       .then((res) => res.json())
       .then((imageData) => {
-        // console.log(imageData);
         if (imageData?.success) {
           const imageURL = imageData?.data?.display_url;
-          // console.log(imageURL);
 
           //* Save task to Database
           saveTask(data.task, imageURL);
@@ -79,7 +74,6 @@ const HomePageAddTask = ({ showForm, setShowForm }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log('SavedTask:', data);
         toast.success('Task added successfully');
 
         // close form
@@ -90,11 +84,9 @@ const HomePageAddTask = ({ showForm, setShowForm }) => {
       });
   };
 
-  // FIXME This function will work only when the input field is focused. It will be a UX issue.
+  // 👇 This function will work only when the input field is focused.
   // Submit form by pressing Enter Key
   const checkKeyDown = (e) => {
-    console.log('User Pressed:', e.key);
-
     if (e.key === 'Enter') {
       handleAddTask(e);
     }

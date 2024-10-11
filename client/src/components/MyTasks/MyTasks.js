@@ -40,8 +40,6 @@ const MyTasks = () => {
     return <h1>{error.message}</h1>;
   }
 
-  // console.log(myTasks);
-
   const handleComment = (id) => {
     // Open Modal
     handleShow();
@@ -62,9 +60,9 @@ const MyTasks = () => {
             </div>
           )}
 
-          {myTasks.map((task, index) => (
+          {myTasks.map((task) => (
             <TaskCard
-              key={index}
+              key={task._id}
               task={task}
               refetch={refetch}
               handleShow={handleShow}

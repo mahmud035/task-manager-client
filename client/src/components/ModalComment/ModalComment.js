@@ -4,7 +4,6 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import Loading from '../Shared/Loading/Loading';
-import './ModalComment.css';
 
 const ModalComment = ({ show, handleClose, commentId }) => {
   const {
@@ -38,12 +37,9 @@ const ModalComment = ({ show, handleClose, commentId }) => {
     return <h1>{error.message}</h1>;
   }
 
-  // console.log(commentedTask);
-
   const handleModalComment = (data) => {
     // Close Modal
     handleClose();
-    // console.log(data, commentId);
 
     const comment = { comment: data.comment };
 
@@ -57,7 +53,6 @@ const ModalComment = ({ show, handleClose, commentId }) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         toast.success('Comment Added Successfully');
         refetch();
       })

@@ -3,7 +3,6 @@ import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import './EditTask.css';
 
 const EditTask = () => {
   const {
@@ -21,8 +20,6 @@ const EditTask = () => {
       taskName: data.task,
     };
 
-    // console.log(updateTask);
-
     fetch(`https://task-manager-server-sigma.vercel.app/updateReview/${_id}`, {
       method: 'PATCH',
       headers: {
@@ -32,7 +29,6 @@ const EditTask = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data?.modifiedCount > 0) {
           toast.success('Task Updated Successfully');
 

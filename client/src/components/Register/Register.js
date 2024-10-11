@@ -17,19 +17,13 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleRegister = (data) => {
-    // console.log(data);
-
     //* Create User
     createUser(data.email, data.password)
       .then((result) => {
-        const user = result.user;
-        console.log(user);
         toast.success('Account Created Successfully');
-
         navigate('/');
       })
       .catch((error) => {
-        console.log(error);
         toast.error(error.message.slice(22, -2));
       });
   };

@@ -17,10 +17,7 @@ const AddTask = () => {
   const navigate = useNavigate();
 
   const handleAddTask = (data) => {
-    // console.log(data);
-
     const image = data.image[0];
-    // console.log(image);
 
     //* Image Upload to Imgbb Server
     const formData = new FormData();
@@ -32,10 +29,8 @@ const AddTask = () => {
     fetch(url, { method: 'POST', body: formData })
       .then((res) => res.json())
       .then((imageData) => {
-        // console.log(imageData);
         if (imageData?.success) {
           const imageURL = imageData?.data?.display_url;
-          // console.log(imageURL);
 
           //* Save task to database
           saveTask(data.task, imageURL);
@@ -59,8 +54,6 @@ const AddTask = () => {
       status: 'incomplete',
     };
 
-    console.log(taskObject);
-
     fetch('https://task-manager-server-sigma.vercel.app/alltask', {
       method: 'POST',
       headers: {
@@ -70,9 +63,7 @@ const AddTask = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log('SavedTask:', data);
         toast.success('Task added successfully');
-
         navigate('/mytask');
       });
   };

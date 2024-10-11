@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import Loading from '../Shared/Loading/Loading';
 import TaskCard from '../TaskCard/TaskCard';
-import './NotCompletedTasks.css';
 
 const NotCompletedTasks = () => {
   const { user } = useContext(AuthContext);
@@ -33,8 +32,6 @@ const NotCompletedTasks = () => {
     return <h1>{error.message}</h1>;
   }
 
-  // console.log(incompleteTasks);
-
   return (
     <div className="task-page-container">
       <div className="container min-vh-100">
@@ -49,8 +46,8 @@ const NotCompletedTasks = () => {
             </div>
           )}
 
-          {incompleteTasks.map((task, index) => (
-            <TaskCard key={index} task={task} refetch={refetch}></TaskCard>
+          {incompleteTasks.map((task) => (
+            <TaskCard key={task._id} task={task} refetch={refetch}></TaskCard>
           ))}
         </div>
       </div>
