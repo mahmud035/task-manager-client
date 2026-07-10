@@ -36,7 +36,7 @@ This is the frontend component of a full-stack MERN application. It communicates
 
 1. **Clone the Repository**:
    ```bash
-   git clone git@github.com:mahmud035/task-manager.git
+   git clone git@github.com:mahmud035/task-manager-client.git
    ```
 2. **Install Dependencies**:
    ```bash
