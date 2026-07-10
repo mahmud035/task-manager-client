@@ -1,0 +1,39 @@
+.task-card {
+  background-color: #fafafa;
+}
+
+.task-status {
+  font-size: 11.63px;
+  font-weight: 500;
+}
+
+.in-progress {
+  background-color: #0ea5e9;
+}
+
+.complete {
+  background-color: #10b981;
+  transition: all 0.3s ease-in-out;
+}
+
+.complete:hover {
+  background-color: #059669;
+}
+
+.icons-and-image-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5rem;
+  padding-top: 2.5rem;
+}
+
+.user-image {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.comment-icon {
+  margin-bottom: -2px;
+}

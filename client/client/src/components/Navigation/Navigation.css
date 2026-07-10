@@ -1,0 +1,39 @@
+.navbar-container {
+  background-color: #1d3e53;
+  color: #fff;
+}
+
+.navbar-logo {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+}
+
+.nav-items {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-items a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.nav-items a.active {
+  color: aqua;
+}
+
+.btn-log-out {
+  background-color: #ec4899;
+  border: none;
+  outline: none;
+  padding: 0.43rem 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-log-out:hover {
+  background-color: #f1236f;
+}

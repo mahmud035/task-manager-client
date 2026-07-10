@@ -1,0 +1,37 @@
+.sign-up-page-container {
+  background-color: #1a374d;
+}
+
+.form-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 75px);
+}
+
+.form-container {
+  color: #fff;
+  width: 400px;
+  margin-inline: auto;
+  box-shadow: 0px 0px 15px -3px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+  background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+  background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+  background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);
+  background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%);
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+  background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+}
+
+.btn-register {
+  background-color: #069a8e;
+  border: none;
+  outline: none;
+  padding: 8px 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-register:hover {
+  background-color: #09afa1;
+}
