@@ -1,20 +1,25 @@
-# Task Manager - Client
+# Task Manager — Client
 
 ## 👉 [Live Demo](https://task-manager-client.web.app/)
 
-A full-stack task management application featuring authentication, task CRUD operations, and efficient server-state management.
+> This is the **client** half of the Task Manager monorepo. The Express + MongoDB API lives in [`../server`](../server) (previously a separate `task-manager-client` / `task-manager-server` pair, since merged). Full project write-up: [root README](../README.md).
+
+The React frontend of a MERN task-management app: create tasks, mark them complete, comment, edit, and delete, with server state managed by TanStack Query.
 
 ## What this demonstrates
 
-- **CRUD Workflows**: Complete interface for creating, reading, updating, and deleting tasks, including task completion toggling and commenting.
-- **Server State Management**: Utilized `TanStack React Query` to efficiently cache and synchronize server state, minimizing unnecessary API calls.
-- **Authentication**: Integrated `Firebase Auth` for secure user login/registration.
-- **Form Handling**: Implemented robust forms using `React Hook Form`.
-- **Responsive UI**: Built with `React-Bootstrap` for a mobile-first, responsive interface.
+- **CRUD workflows**: Interface for creating, reading, updating, and deleting tasks, including marking a task complete and commenting on it.
+- **Server state management**: `TanStack React Query` caches every read and invalidates the affected query keys on each write, so lists refetch without manual state syncing.
+- **Status-filtered views**: Completed and incomplete tasks are fetched from dedicated endpoints rather than filtered in the browser.
+- **Form handling**: `React Hook Form` across sign-in, register, add-task, edit-task, and the comment modal.
+- **Authentication (client-side)**: `Firebase Auth` for login/registration via email &amp; password and Google.
+- **Responsive UI**: `React-Bootstrap` for a mobile-first interface.
 
 ## Architecture
 
-This is the frontend component of a full-stack MERN application. It communicates with a custom [Node.js/Express backend](https://github.com/mahmud035/task-manager-server), managing user-specific data via Firebase Auth tokens and REST API endpoints.
+The frontend of a full-stack MERN application. It communicates with the Node.js/Express backend in [`../server`](../server) over REST.
+
+> **Trust model:** Firebase authenticates the user **in the browser only**. No Firebase ID token is sent to or verified by the API — task ownership is scoped by an `email` value passed in the request. See *Known limitations* in the [root README](../README.md).
 
 ## Tech stack
 
@@ -22,30 +27,32 @@ This is the frontend component of a full-stack MERN application. It communicates
 | :--- | :--- |
 | **Framework** | React 18, React Router 6 |
 | **State** | TanStack React Query v4 |
-| **Auth** | Firebase v9 |
+| **Auth (client)** | Firebase v9 (email/password, Google) |
 | **Forms** | React Hook Form v7 |
 | **Styling** | React-Bootstrap v2 |
 
 ## What I'd extend next
 
-- Implement more comprehensive unit/integration testing (currently utilizing standard CRA defaults).
-- Optimize backend API query parameters for better performance on large user task lists.
-- Add drag-and-drop task reordering functionality.
+- Send the Firebase ID token as a Bearer header and verify it server-side before trusting any `email`.
+- Make task completion two-way (the current status endpoint only sets `complete`).
+- Add unit/integration tests (currently CRA defaults only).
+- Add drag-and-drop task reordering.
 
 ## Getting Started
 
-1. **Clone the Repository**:
+1. **Clone the repository**:
    ```bash
-   git clone git@github.com:mahmud035/task-manager-client.git
+   git clone https://github.com/mahmud035/task-manager.git
+   cd task-manager/client
    ```
-2. **Install Dependencies**:
+2. **Install dependencies**:
    ```bash
    npm install
    ```
-3. **Environment Setup**: Add necessary Firebase config credentials.
+3. **Environment setup**: provide your own Firebase web config in `src/firebase config/firebase.config.js`.
 4. **Run**:
    ```bash
-   npm start
+   npm start        # http://localhost:3000
    ```
 
 ## Contributing
