@@ -14,7 +14,7 @@ A full-stack task management application featuring authentication, task CRUD ope
 
 ## Architecture
 
-This is the frontend component of a full-stack MERN application. It communicates with a custom Node.js/Express backend, managing user-specific data via Firebase Auth tokens and REST API endpoints.
+This is the frontend component of a full-stack MERN application. It communicates with a custom [Node.js/Express backend](https://github.com/mahmud035/task-manager-server), managing user-specific data via Firebase Auth tokens and REST API endpoints.
 
 ## Tech stack
 
