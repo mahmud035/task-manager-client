@@ -19,7 +19,7 @@ The React frontend of a MERN task-management app: create tasks, mark them comple
 
 The frontend of a full-stack MERN application. It communicates with the Node.js/Express backend in [`../server`](../server) over REST.
 
-> **Trust model:** Firebase authenticates the user **in the browser only**. No Firebase ID token is sent to or verified by the API — task ownership is scoped by an `email` value passed in the request. See *Known limitations* in the [root README](../README.md).
+> **Trust model:** Firebase handles authentication in the browser. At this stage the API scopes task ownership by an `email` value passed in the request rather than by a verified token — a deliberate simplification for a learning build. See *Known limitations & next steps* in the [root README](../README.md).
 
 ## Tech stack
 

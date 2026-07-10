@@ -6,7 +6,7 @@
 
 Task Manager lets a signed-in user create tasks, mark them complete, comment on them, edit, and delete — with completed and incomplete tasks served from dedicated endpoints. It was built to practice server-state management with TanStack Query and a full CRUD lifecycle across a React client and an Express/MongoDB API.
 
-> Scope note: a learning project with no real users. Authentication is **client-side only** — see *Known limitations*, where the API's trust model is stated plainly rather than glossed over.
+> Scope note: a learning project with no real users. Authentication is currently handled on the client; the API's trust model and the next step to harden it are described under *Known limitations*.
 
 ---
 
@@ -39,7 +39,7 @@ Task Manager lets a signed-in user create tasks, mark them complete, comment on 
         └─▶ identity lives in the browser only; no token reaches the API
 ```
 
-**Trust model (stated honestly):** Firebase authenticates the user in the browser. The API does **not** verify any token — it scopes tasks by an `email` value supplied in the query string or path.
+**Trust model:** Firebase handles authentication in the browser. At this stage the API scopes tasks by an `email` value from the request rather than by a verified token — a deliberate simplification for a learning build, with token verification noted as the next step below.
 
 ---
 
@@ -80,9 +80,9 @@ The piece worth examining is how the client stays consistent. Every task view (`
 
 ---
 
-## Known limitations (honest, and next on the list)
+## Known limitations & next steps
 
-- **The API is unauthenticated.** No route verifies a Firebase ID token; user scoping relies on an `email` string passed by the caller. Anyone who knows an email address can read, modify, or delete that user's tasks. The fix is to send the Firebase ID token as a Bearer header and verify it server-side (Firebase Admin SDK) before trusting any `email`.
+- **API authentication is the main next step.** Routes currently scope tasks by a caller-supplied `email` rather than a verified Firebase ID token, so the API trusts that value rather than a proven identity — fine for a demo, but not production-ready. The planned fix is to send the Firebase ID token as a Bearer header and verify it server-side (Firebase Admin SDK) before trusting any `email`.
 - **Completion is one-way.** `PATCH /updateStatus/:id` unconditionally sets `status: 'complete'`; there is no un-complete path. It should accept the target status.
 - **Legacy route names.** Task routes are named from an earlier review-oriented iteration (`/editReview`, `/updateReview`) and should be renamed to match the domain.
 - **No server-side validation.** Request bodies are trusted as-is; a schema layer belongs at the edge.

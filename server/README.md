@@ -4,7 +4,7 @@
 
 ## Description
 
-The backend API for Task Manager: RESTful endpoints for CRUD on user tasks, backed by MongoDB Atlas. It is a single Express service with no authentication layer.
+The backend API for Task Manager: RESTful endpoints for CRUD on user tasks, backed by MongoDB Atlas. It is a single Express service; at this stage token verification is handled as a next step rather than in the API (see below).
 
 ## What this demonstrates
 
@@ -17,7 +17,7 @@ The backend API for Task Manager: RESTful endpoints for CRUD on user tasks, back
 
 A Node.js/Express server between the React client and MongoDB.
 
-> **No auth:** the API does not verify Firebase tokens. Task ownership is scoped by an `email` value supplied in the query string or path, so any caller who knows an email can read or modify that user's tasks. See *Known limitations* in the [root README](../README.md).
+> **Auth (next step):** the API currently scopes task ownership by an `email` value from the request rather than by a verified Firebase token — a deliberate simplification for a learning build. Verifying the token server-side is the planned next step; see the [root README](../README.md).
 
 ## API surface
 
